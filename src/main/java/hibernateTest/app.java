@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-public class main {
+public class app {
     public static void main(String [ ] args)
     {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
