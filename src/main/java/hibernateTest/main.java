@@ -14,7 +14,7 @@ public class main {
         Session session = null;
         Transaction transaction = null;
         Departament dep = new Departament();
-        dep.setDeptName("Fukumuku");
+        dep.setDeptName("Oluu");
         try{
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
