@@ -19,4 +19,11 @@ public class Departament {
 
     public String getDeptName(){return deptName;}
     public void setDeptName(String deptName){this.deptName = deptName;}
+
+    @Override
+    public String toString() {
+        return "\nDepartament"
+                + "\n id: " + this.getId()
+                + "\n departament name: " + this.getDeptName();
+    }
 }

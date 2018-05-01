@@ -32,4 +32,13 @@ public class Employee {
 
     public Departament getDepartament(){return departament;}
     public void setDepartament(Departament departament){this.departament = departament;}
+
+    @Override
+    public String toString() {
+        return "\nEmployeeDAO"
+                + "\n id: " + this.getId()
+                + "\n first name: " + this.getFirstName()
+                + "\n salary: " + this.getSalary()
+                + "\n departament: " + this.getDepartament().getDeptName();
+    }
 }
