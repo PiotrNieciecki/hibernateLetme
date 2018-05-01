@@ -27,7 +27,6 @@ public class GenericHibernateDao<T, K> implements GenericDAO<T, K>{
         session.save(t);
         transaction.commit();
         session.close();
-        HibernateUtil.shutdown();
     }
 
     @Override
@@ -35,10 +34,9 @@ public class GenericHibernateDao<T, K> implements GenericDAO<T, K>{
         SessionFactory sessionFactory = getSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        T t = findById(id);
+        T t = (T) session.get(type, (Serializable) id);
         session.delete(t);
         transaction.commit();
-        HibernateUtil.shutdown();
     }
 
     @Override
@@ -48,7 +46,6 @@ public class GenericHibernateDao<T, K> implements GenericDAO<T, K>{
         Transaction transaction = session.beginTransaction();
         session.update(t);
         transaction.commit();
-        HibernateUtil.shutdown();
     }
 
     @Override
@@ -56,9 +53,8 @@ public class GenericHibernateDao<T, K> implements GenericDAO<T, K>{
         SessionFactory sessionFactory = getSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        T dto = (T) session.get(type.getClass(), (Serializable) id);
+        T dto = (T) session.get(type, (Serializable) id);
         session.close();
-        HibernateUtil.shutdown();
         return dto;
     }
 

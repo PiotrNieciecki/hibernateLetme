@@ -1,5 +1,7 @@
 package hibernateTest;
 
+import hibernateTest.dao.EmployeeDAO;
+import hibernateTest.dao.hibernate.EmployeeHibernateDao;
 import hibernateTest.model.Departament;
 import hibernateTest.model.Employee;
 import hibernateTest.util.HibernateUtil;
@@ -11,36 +13,13 @@ import org.hibernate.query.Query;
 public class app {
     public static void main(String [ ] args)
     {
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        Session session = null;
-        Transaction transaction = null;
-        Employee emp2;
-        Departament dep = new Departament();
-        dep.setDeptName("X");
-        Employee emp = new Employee();
-        emp.setFirstName("Tomek");
-        emp.setSalary(5505.90);
-        emp.setDepartament(dep);
-        try{
-            session = sessionFactory.openSession();
-            transaction = session.beginTransaction();
-            session.save(dep);
-            session.save(emp);
-            transaction.commit();
-            emp2 = (Employee) session.get(Employee.class, 2l);
-            if(emp2!=null)
-                System.out.println(emp2.toString());
-        }catch(Exception e){
-
-            if(transaction!=null){
-                transaction.rollback();
-            }
-        }finally{
-            session.close();
-        }
+        EmployeeDAO empd = new EmployeeHibernateDao();
+        Employee emp = (Employee) empd.findById(3l);
+        System.out.println(emp.toString());
+        emp.setSalary(10000);
+        empd.update(emp);
+        emp = (Employee) empd.findById(3l);
+        System.out.println(emp.toString());
         HibernateUtil.shutdown();
-        System.out.println(emp.getId()+" "+emp.getFirstName()+" "+emp.getSalary()+" "+emp.getDepartament().getDeptName());
-
-
     }
 }
