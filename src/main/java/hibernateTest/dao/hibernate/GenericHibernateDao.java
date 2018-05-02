@@ -53,9 +53,9 @@ public class GenericHibernateDao<T, K> implements GenericDAO<T, K>{
         SessionFactory sessionFactory = getSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        T dto = (T) session.get(type, (Serializable) id);
+        T dt = (T) session.get(type, (Serializable) id);
         session.close();
-        return dto;
+        return dt;
     }
 
     protected SessionFactory getSessionFactory(){

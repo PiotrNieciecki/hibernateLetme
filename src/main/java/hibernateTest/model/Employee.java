@@ -35,7 +35,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "\nEmployeeDAO"
+        return "\nEmployee: "
                 + "\n id: " + this.getId()
                 + "\n first name: " + this.getFirstName()
                 + "\n salary: " + this.getSalary()

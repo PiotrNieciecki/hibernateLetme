@@ -22,7 +22,7 @@ public class Departament {
 
     @Override
     public String toString() {
-        return "\nDepartament"
+        return "\nDepartament: "
                 + "\n id: " + this.getId()
                 + "\n departament name: " + this.getDeptName();
     }
